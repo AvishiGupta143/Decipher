@@ -1,0 +1,110 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | Login
+{% endblock %}
+{% block body_block %}
+
+    <style>
+        .jumbotron {
+            background-color: #a5d5a6;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 30px;
+            border: none;
+            outline: none;
+        }
+
+        input {
+            width: 300px;
+            height: 40px;
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        ::placeholder {
+            text-align: center;
+        }
+    </style>
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Login Here</h2>
+            <form action="" method="POST" onsubmit="return CheckPasswordCorrectness();">
+                {% csrf_token %}
+                <h4>Username : </h4>
+                <input id="Username" onkeyup="CheckUsernameExistence(this.value);" type="text" placeholder="Enter Name" name="Username"/>
+                <span id="UsernameError" style="display: block; color: red; margin: 10px auto auto;"></span>
+
+                <h4>Password : </h4>
+                <input id="Password1" type="password" placeholder="Enter Password" name="Password"/>
+                <span id="PasswordError" style="display: block; color: red; margin: 10px auto auto;"></span>
+                <br>
+                <button class="btn btn-light" type="submit" value="SUBMIT">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <script>
+        function CheckUsernameExistence(str) {
+            if (str === '') {
+                document.getElementById('UsernameError').innerHTML = '';
+            } else {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'CheckUsernameUniqueness' %}",
+                        data: {'Username': str, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.result === 'Exists') {
+                                document.getElementById('UsernameError').innerHTML = '';
+                            } else {
+                                document.getElementById('UsernameError').innerHTML = 'Account Does not Exists';
+                            }
+                        },
+                        error: function (rs) {
+                            alert(rs.responseText);
+                        }
+                    });
+            }
+        }
+
+        function CheckPasswordCorrectness() {
+            var res = 0;
+            var username = document.getElementById('Username').value
+            var str = document.getElementById('Password1').value
+            if (str === '') {
+                document.getElementById('PasswordError').innerHTML = '';
+            } else {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'CheckPasswordCorrectness' %}",
+                        data: {'Username': username, 'Password': str, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                        dataType: "json",
+                        async: false,
+                        success: function (response) {
+                            if (response.result === 'Correct') {
+                                document.getElementById('PasswordError').innerHTML = '';
+                                res = 1;
+                            } else {
+                                document.getElementById('PasswordError').innerHTML = 'Wrong Password';
+                                res = 0;
+                            }
+                        },
+                        error: function (rs) {
+                            alert(rs.responseText);
+                        }
+                    });
+            }
+            return Boolean(res);
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | Home
+{% endblock %}
+{% block body_block %}
+
+
+    <style>
+        .jumbotron {
+            background-color: #a5d5a6;
+        }
+        .btn.btn-light{
+            margin-right: 20px;
+        }
+    </style>
+
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Decipher</h1>
+            <p class="lead">This is a Simple Web application to demonstrate the assignment given for the Internship.</p>
+            <hr class="my-4">
+            <p>
+                It includes both the FrontEnd & BackEnd Tasks of the Assignment.<br>
+                You can click on the Assignment Button to take a look at the FrontEnd Task.<br>
+                For using the Backend, you will have to create your account here by registering and logging in. You can
+                then verify your Email and Phone Number.
+            </p>
+            <a class="btn btn-light" href="{% url 'Assignment' %}" role="button">Assignment</a>
+            {% if user.is_authenticated %}
+                {% if Profile.Email_Verified == 'False' %}
+                    <a class="btn btn-light" href="{% url 'EmailVerification' %}" role="button">Email Verification</a>
+                {% else %}
+                    <button class="btn btn-light" style="background-color: #02b87e;">Email Verified</button>
+                {% endif %}
+                {% if Profile.Phone_Verified == 'False' %}
+                    <a class="btn btn-light" href="{% url 'PhoneVerification' %}" role="button">Phone Verification</a>
+                {% else %}
+                    <button class="btn btn-light" style="background-color: #02b87e;">Phone Verified</button>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

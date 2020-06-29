@@ -1,0 +1,79 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | Profile
+{% endblock %}
+{% block body_block %}
+
+    <style>
+        .jumbotron {
+            background-color: #a5d5a6;
+        }
+
+        .Profile h3 {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        button {
+            margin-right: 20px;
+        }
+    </style>
+
+
+
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Profile</h1>
+            <p class="lead">This Page shows the User's Detail.</p>
+            <hr class="my-4">
+
+            <div class="Profile">
+                <h3>User ID:</h3><span style="font-size: 20px; font-weight: lighter;">{{ Profile.Unique_ID }}</span><br>
+                <h3>UserName :</h3><span
+                    style="font-size: 20px; font-weight: lighter;">{{ Profile.user.username }}</span><br>
+                <h3>Email :</h3>
+                <h3>{{ Profile.Email }}</h3>
+                {% if Profile.Email_Verified == 'False' %}
+                    <a href="{% url 'EmailVerification' %}">
+                        <button class="btn btn-light">Verify Email</button>
+                    </a><br>
+                {% else %}
+                    <button style="background-color: #02b87e;" class="btn btn-light">Email Verified</button> <br>
+                {% endif %}
+                <h3>Contact :</h3><span
+                    style="font-size: 20px; font-weight: lighter; margin-right: 20px;">{{ Profile.Contact }}</span>
+                {% if Profile.Phone_Verified == 'False' %}
+                    <a href="{% url 'PhoneVerification' %}">
+                        <button class="btn btn-light">Verify Contact No.</button>
+                    </a>
+                {% else %}
+                    <button style="background-color: #02b87e;" class="btn btn-light">Contact Verified</button>
+                {% endif %}
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

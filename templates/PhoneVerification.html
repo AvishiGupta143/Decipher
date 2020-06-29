@@ -1,0 +1,144 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | Phone Verify
+{% endblock %}
+{% block body_block %}
+
+    <style>
+        .jumbotron {
+            background-color: #a5d5a6;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 30px;
+            border: none;
+            outline: none;
+        }
+
+        input {
+            width: 300px;
+            height: 40px;
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        ::placeholder {
+            text-align: center;
+        }
+
+
+    </style>
+
+
+
+
+    <div class="container">
+        <div class="jumbotron">
+            <div id="OOPS" class="alert alert-danger alert-dismissible fade in" style="display: none;">
+                <a style="line-height: 5px;" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Oops!</strong>Wrong Code!
+            </div>
+            <h2>Verify Your Contact Number</h2>
+            <form action="{% url 'ApplyVerifyPhone' %}" method="POST" onsubmit="return CheckCode();">
+                {% csrf_token %}
+                <h4>Contact Number : </h4>
+                <input id="Contact" type="text" value="{{ Contact }}" placeholder="Enter Phone Number" name="Contact"
+                       style="background-color: transparent; border: 1px solid white;" readonly/><br>
+                <button id="SendButton" onclick="Show();" class="btn btn-light" type="button" value="SUBMIT">Send Code
+                </button>
+
+                <div id="VerificationBox" style="display: none; margin-top: 20px;">
+                    <h4>Enter Verification Code: </h4>
+                    <input id="Code" type="text" placeholder="Enter Code" name="Code"/>
+                    <br>
+
+                    <button class="btn btn-light" type="submit" value="SUBMIT">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var Got;
+
+        function CheckCode() {
+            if (document.getElementById('Code').value === Got) {
+                console.log('Done Biro')
+                return true;
+            } else {
+                console.log('Kch hagge ho...Check kro')
+                document.getElementById('OOPS').style.display = 'inherit'
+                return false;
+            }
+        }
+
+        function Show() {
+            document.getElementById('VerificationBox').style.display = 'inherit'
+            var fewSeconds = 120;
+            countdown(2);
+            document.getElementById('SendButton').disabled = 'true';
+            setTimeout(function () {
+                console.log('Code Snet')
+                document.getElementById('SendButton').removeAttribute('disabled')
+                document.getElementById('SendButton').innerText = 'Send Code Again'
+            }, fewSeconds * 1000);
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "{% url 'SendCodePhone' %}",
+                    data: {
+                        'To_Phone': document.getElementById('Contact').value,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        Got = response.Code;
+                    },
+                    error: function (rs) {
+                        alert(rs.responseText);
+                    }
+                });
+        }
+
+        var timeoutHandle;
+
+        function countdown(minutes, seconds) {
+            var seconds = 60;
+            var mins = minutes
+
+            function tick() {
+                var current_minutes = mins - 1
+                seconds--;
+                var remain = 'Resend Code in ' + current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+                console.log(remain)
+                document.getElementById('SendButton').innerText = remain;
+                if (seconds > 0) {
+                    timeoutHandle = setTimeout(tick, 1000);
+                } else {
+
+                    if (mins > 1) {
+                        setTimeout(function () {
+                            countdown(mins - 1);
+                        }, 1000);
+
+                    }
+                }
+            }
+
+            tick();
+        }
+
+
+    </script>
+
+
+
+
+
+{% endblock %}

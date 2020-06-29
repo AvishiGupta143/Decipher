@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INDEX</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>SelectDine|Assignment</title>
+    <link rel="icon" href="https://selectdine.com/images/Logo1.jpg">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
+
+    <style>
+        body{
+            background-color: #fcfbfb;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        .sidenav {
+            height: 100%;
+            width: 330px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            padding-top: 20px;
+            box-shadow: 0 0 20px rgba(227, 223, 223, 0.93);
+        }
+
+        .sidenav a {
+            display: block;
+
+        }
+
+        .img {
+            margin-top: -40px;
+            margin-left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #02b87e;
+            border-radius: 50%;
+        }
+
+        .img h6 {
+            color: white;
+            text-align: center;
+            position: relative;
+            top: 15px;
+            font-size: 20px;
+        }
+
+        .img button {
+            background-color: #fcfbfb;
+            position: absolute;
+            left: 270px;
+            top: 30px;
+            width: 30px;
+            height: 20px;
+            border: none;
+            outline: none;
+        }
+        .img h3{
+            position: relative;
+            top: -24px;
+        }
+        .sidenav i{
+            opacity: 40%;
+        }
+
+        .btn {
+            transition: 0.5ms ease;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #02b87e;
+        }
+
+        button {
+            border: none;
+            outline: none;
+        }
+
+        .container {
+            margin-left: 320px;
+        }
+
+        .One {
+            background-color: white;
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            position: relative;
+            left: 25px;
+            box-shadow: 0 0 5px rgba(227, 223, 223, 0.93);
+        }
+
+        .One button {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+
+        .One i {
+            position: relative;
+            top: -1px;
+            margin-left: -3px;
+            font-weight: bold;
+        }
+
+        .One th {
+            border-right: 1.5px solid black;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+        }
+
+        .One span {
+            position: relative;
+            top: 15px;
+            left: 25px;
+            color: #908d8d;
+        }
+
+        .One h3 {
+            position: relative;
+            font-weight: bold;
+        }
+
+        .Two {
+            background-color: white;
+            width: 50%;
+            height: 320px;
+            display: inline-block;
+            position: relative;
+            border-radius: 15px;
+            left: 25px;
+            box-shadow: 0 0 5px rgba(227, 223, 223, 0.93);
+        }
+
+        .Two small {
+            position: relative;
+            top: 15px;
+            left: 15px;
+        }
+
+        .Two h3 {
+            position: relative;
+            left: 15px;
+        }
+
+        .Two p {
+            position: relative;
+            left: 15px;
+            top: -10px;
+        }
+
+        .Two button {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+
+        .Two i {
+            position: relative;
+            top: -1px;
+            margin-left: -3px;
+            font-weight: bold;
+        }
+
+        .Three {
+            background-color: white;
+            width: 350px;
+            top: -90px;
+            height: 230px;
+            display: inline-block;
+            position: relative;
+            border-radius: 12px;
+            left: 50px;
+            box-shadow: 0 0 5px rgba(227, 223, 223, 0.93);
+        }
+
+        .Three p{
+            position: absolute;
+            top: 165px;
+        }
+
+        .Three span{
+            position: absolute;
+            top: 185px;
+            left: 100px;
+        }
+        .Three h2{
+            position: absolute;
+            top: 125px;
+            left: 130px;
+        }
+        .Three .smile{
+            position: absolute;
+            top: 95px;
+            left: 150px;
+            border: none;
+            outline: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #a5d5a6;;
+        }
+
+        .Four {
+            background-color: white;
+            width: 50%;
+            height: 280px;
+            display: inline-block;
+            position: relative;
+            top: -35px;
+            left: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 5px rgba(227, 223, 223, 0.93);
+        }
+
+        .Five {
+            background-color: #02b87e;
+            color: rgb(190, 252, 231);
+            border-radius: 12px;
+            width: 350px;
+            top: -80px;
+            left: 50px;
+            height: 330px;
+            display: inline-block;
+            position: relative;
+            box-shadow: 0 0 5px rgba(227, 223, 223, 0.93);
+        }
+        .y-axis{
+            position: absolute;
+            top: 110px;
+            left: 70px;
+            color: #908d8d;
+        }
+        .y-axis li{
+            margin-bottom: 20px;
+        }
+        .y-axis p{
+            opacity:10%;width: 500px; left: 50px; top: -12px;
+            border-top: 3px dashed black;
+        }
+        .x-axis{
+            color: #908d8d;
+            position: absolute; display: inline-block; left: 150px; top:260px;
+        }
+        .x-axis li{
+            display: inline-block;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+        .x-axis span{
+             background-color: #02b87e;
+             border-radius: 3px;
+        }
+        .progress {
+          --percent: 76.7;
+            stroke-dashoffset: calc(142 - (var(--percent) * 142 / 100));
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+<div class="sidenav">
+    <h5 style="font-weight: bold; width: 300px;  margin-left: 80px;">Nick Shchadov</h5>
+    <div class="img">
+        <h6>NS</h6>
+        <button><h3>+</h3></button>
+    </div>
+    <small style=" position: relative;left: 80px; top: -20px;opacity: 50%;">KuJi Podcast</small>
+
+    <div style="margin-top: 20px; width: 330px;" class="btn-group-vertical">
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-inbox" style="margin-right: 10px;"></i>Inbox
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-bolt" style="margin-right: 10px;"></i>Alerts<span
+                style="margin-left: 10px; background-color: #e21313;" class="badge">2</span></button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-th-large" style="margin-right: 10px;"></i>Overview
+        </button>
+
+
+        <h4 style="opacity: 50%; margin-left: 10px;">Podcasts</h4>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-microphone" style="margin-right: 10px;"></i>Episodes
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-music" style="margin-right: 10px;"></i>Media
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-list-ul" style="margin-right: 10px;"></i>Materials
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fas fa-user-friends"
+                                                               style="margin-right: 10px;"></i>Contacts
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+
+
+        <h4 style="opacity: 50%; margin-left: 10px;">Analytics</h4>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-dot-circle-o"
+                                                               style="margin-right: 10px;"></i>Subscribers
+            <i class="fa fa-caret-right" aria-hidden="true"></i><span
+                    style="margin-left: 10px; background-color: #e21313;" class="badge">34</span>
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fas fa-binoculars"
+                                                               style="margin-right: 10px;"></i>Channels
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fas fa-dice-d6" style="margin-right: 10px;"></i>Integrations
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+        <button style="height: 40px;" class="btn btn-light"><i class="fa fa-line-chart" style="margin-right: 10px;"></i>Reports
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+
+
+        <div class="PodCaster" style="margin-top: 50px;">
+            <button style="margin-right: 20px;width: 30px; height: 20px;" class="fa fa-ellipsis-h pull-right"></button>
+            <h5 style="font-weight: bold; margin-left: 80px; margin-top: 40px;">PodCaster</h5>
+
+            <div class="img">
+                <i class="fa fa-microphone"
+                   style=" opacity: 100% ;font-size:20px; margin-top: 15px; margin-left: 18px; color: white;"></i>
+            </div>
+            <small style=" position: relative;left: 80px; top: -20px;opacity: 50%;">ver. 0.234</small>
+        </div>
+    </div>
+</div>
+<div class="container One" style="border-radius: 15px;">
+
+    <table style="width:100%;  margin-top: 20px; ">
+        <tr>
+            <th>
+                <span>New Subscribers</span>
+                <h3>5,097</h3>
+                <p style="color: #02b87e; position: relative; left: 10px; top: -5px; ">
+                    <button style="background-color: #b0f1b2"><i
+                            style="color: #02b87e; font-weight: bolder;">&#8599;</i></button>
+                    +33.45%
+                </p>
+            </th>
+
+            <th>
+                <span style="left: -10px;">Streams</span>
+                <h3>47,403</h3>
+                <p style="color: #de2339; position: relative; left: 5px; top: -5px; ">
+                    <button style="background-color: #e5879b"><i
+                            style="color: #de2339; font-weight: bolder;">&#8599;</i></button>
+                    -112.45%
+                </p>
+            </th>
+
+            <th>
+                <span>Engagements Rate</span>
+                <h3 style=" left: -5px;">25.81</h3>
+                <p style="color: #02b87e; position: relative; left: 5px; top: -5px; ">
+                    <button style="background-color: #b0f1b2"><i
+                            style="color: #02b87e; font-weight: bolder;">&#8599;</i></button>
+                    +62.52%
+                </p>
+            </th>
+
+            <th style="border-right: none;">
+                <span>Avg.watch time</span>
+                <h3 style="left: 15px;">45.4min</h3>
+                <p style="color: #02b87e; position: relative; left: 8px; top: -5px; ">
+                    <button style="background-color: #b0f1b2"><i
+                            style="color: #02b87e; font-weight: bolder;">&#8599;</i></button>
+                    +4.46%
+                </p>
+            </th>
+        </tr>
+    </table>
+
+
+</div>
+<br>
+
+<div class="container Two">
+    <span style="position: absolute; font-weight: bolder; margin-top: 25px; margin-left: 20px; ">Audience</span>
+    <h3 style="position: absolute; top: 25px; left: 34px;font-weight: bold; ">301,097</h3>
+    <p style="color: #02b87e; position: absolute; left: 34px; top: 75px; ">
+        <button style="background-color: #b0f1b2;"><i
+                style="color: #02b87e; font-weight: bolder;">&#8599;</i></button>
+        +58.31%<small style="color: #807e7e; font-weight: bolder; top: -1px; left: 5px;">for 7 last days</small>
+    </p>
+
+    <div class="Graph">
+        <span>
+            <ul class="y-axis">
+                <li>300k<p></p></li>
+                <li>290k<p></p></li>
+                <li>280k<p></p></li>
+                <li>270k<p></p></li>
+            </ul>
+            <ul class="x-axis">
+                <li>Dec 21<span style="position:absolute; top: -45px; left: 50px; width: 20px; height: 50px;"></span></li>
+                <li>Dec 22<span style="position:absolute; top: -75px; left: 120px; width: 20px; height: 80px;"></span></li>
+                <li>Dec 23<span style="position:absolute; top: -95px; left: 190px; width: 20px; height: 100px;"></span></li>
+                <li>Dec 24<span style="position:absolute; top: -105px; left: 255px; width: 20px; height: 110px;"></span></li>
+                <li>Dec 25<span style="position:absolute; top: -145px; left: 325px; width: 20px; height: 150px;"></span></li>
+                <li>Dec 26<span style="position:absolute; top: -160px; left: 395px; width: 20px; height: 165px;"></span></li>
+                <li>Dec 27<span style="position:absolute; top: -170px; left: 460px; width: 20px; height: 175px;"></span></li>
+
+            </ul>
+        </span>
+    </div>
+</div>
+
+
+
+<div class="Three">
+    <span style="position: absolute; left: 35px; top: 15px; width:80%;">
+    <button style="border-radius: 3px; color: #747171; position:relative; top: 15px; width: 30px; height: 20px; margin-right: 30px;" class="fa fa-ellipsis-h pull-right"></button>
+            <h5 style="font-weight: bold; margin-left: 20px; margin-top: 20px; opacity: 70%;">Audience Satisfaction</h5>
+        </span>
+    <p style="left:70px;">0%</p>
+    <h2 style="font-weight: bold;">76.7%</h2>
+    <span class="smile"><i style="color: #03a380; font-size: 25px; position: relative; top: 8px; left: 8px;" class="far fa-smile"></i></span>
+    <small style="position: absolute; top:180px; left: 105px;opacity: 70%; font-weight: bold;">Based on Likes/Dislikes</small>
+
+
+    <svg style="position: absolute; left: 70px; top: 60px;"
+        viewBox="0 0 140 50"
+      ><g
+        fill-opacity="0"
+        stroke-width="7"
+      ><path
+        d="M5 50a45 45 0 1 1 90 0"
+        stroke="#EBEDF8"></path><path
+        class="progress"
+        d="M5 50a45 45 0 1 1 90 0"
+        stroke="#02b87e"
+        stroke-dasharray="142"
+        stroke-dashoffset="142"></path></g></svg>
+    <p style="left: 250px;">100%</p>
+
+
+</div>
+
+<div class="container Four">
+
+    <span style="position: absolute; top: 30px; left: 30px;">Popular Episodes</span>
+    <a href="#" style="color: #02b87e; position: absolute; left: 690px; top: 30px;">See all</a>
+
+    <span style="position: absolute; top: -5px;">
+        <span style="background-color: rgba(239,239,239,0.36); border-radius: 4px; text-align: center; width:30px; height: 20px; position: absolute; left: 20px; top: 73px;">1</span>
+        <h4 style="position: relative; top: 62px; left: 60px;">Kuji Podcast 33: Live</h4>
+        <p style="position: relative; top: 30px; left: 625px;">1,99m <a style="margin-left: 10px; color: #02b87e;" href="#">Live</a></p>
+        <p style="position: relative; top: 20px; left: 60px;color: #908d8d;">Guest: Nurlan Saburov</p>
+    </span>
+
+
+    <span style="position: absolute; top:60px;">
+        <span style="background-color: rgba(239,239,239,0.36); border-radius: 4px; text-align: center; width:30px; height: 20px; position: absolute; left: 20px; top: 73px;">2</span>
+        <h4 style="position: relative; top: 62px; left: 60px;">Kuji Podcast 20: Live</h4>
+        <p style="position: relative; top: 30px; left: 625px;">1,54m <a style="margin-left: 10px; color: #02b87e;" href="#">Live</a></p>
+        <p style="position: relative; top: 20px; left: 60px; color: #908d8d;">Guest: Nurlan Saburov</p>
+    </span>
+
+
+    <span style="position: absolute; top:125px;">
+        <span style="background-color: rgba(239,239,239,0.36); border-radius: 4px; text-align: center; width:30px; height: 20px; position: absolute; left: 20px; top: 73px;">3</span>
+        <h4 style="position: relative; top: 62px; left: 60px;">Kuji Podcast 24: Live</h4>
+        <p style="position: relative; top: 30px; left: 625px;">1,04m <a style="margin-left: 10px; color: #02b87e;" href="#">Live</a></p>
+        <p style="position: relative; top: 20px; left: 60px;color: #908d8d;">Guest: Nurlan Saburov</p>
+    </span>
+
+</div>
+
+<div class="Five">
+    <span style="position: absolute; left: 35px; top: 15px; width:80%;">
+    <button style="border-radius:3px; background-color:rgb(190, 252, 231); opacity: 40%; color: #02b87e; width: 30px; height: 20px; margin-top: 30px; margin-right: 30px;" class="fa fa-ellipsis-h pull-right"></button>
+            <p style="font-weight: bold;margin-top: 30px; margin-left: 20px;">Webinars</p>
+        <h3 style="position: absolute; width: 250px; margin-left: 20px;">Learn how you can earn more then 20% each month!</h3>
+        <p style="position: absolute; width: 220px; top: 165px; margin-left: 20px;">Join our webinar and learn how to increase more then 20% your monthly income</p>
+        <a style="color:rgb(190, 252, 231);  position: absolute; width: 220px; top: 245px; margin-left: 20px;" href="#">Learn More</a>
+    </span>
+
+</div>
+<a href="{% url 'Homepage' %}"><button style="position: absolute; top: 780px; left: 1250px;"  class="btn btn-light"> Go To Home
+</button></a>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    | Register
+{% endblock %}
+{% block body_block %}
+
+    <style>
+        .jumbotron {
+            background-color: #a5d5a6;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 30px;
+            border: none;
+            outline: none;
+        }
+
+        input {
+            width: 300px;
+            height: 40px;
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        ::placeholder {
+            text-align: center;
+        }
+
+
+    </style>
+
+
+
+
+    <div class="container">
+        <div class="jumbotron">
+            <div id="OOPS" class="alert alert-danger alert-dismissible fade in" style="display: none;">
+                <a style="line-height: 5px;" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong id="O">Oops!</strong><span id="S">Fix all the errors then Click 'Submit'</span>
+            </div>
+            <h2>Register Yourself Here!</h2>
+            <form action="" method="POST" onsubmit="return CheckForm();">
+                {% csrf_token %}
+                <h4>Username : </h4>
+                <input onkeyup="CheckUsernameExistence(this.value);" type="text" placeholder="Enter Name"
+                       name="Username"/>
+                <span id="UsernameError"
+                      style="display: block; color: red; margin: 10px auto auto; font-weight: bolder;"></span>
+
+                <h4>Email : </h4>
+                <input onkeyup="CheckEmailUniqueness(this.value);" type="email" placeholder="Enter Email" name="Email"/>
+                <span id="EmailError"
+                      style="display: block; color: red; margin: 10px auto auto; font-weight: bolder;"></span>
+
+                <h4>Phone : </h4>
+                <input onkeyup="CheckPhoneValidity(this.value)" type="text" placeholder="Enter Phone" name="Phone"/>
+                <span id="PhoneError"
+                      style="display: block; color: red; margin: 10px auto auto; font-weight: bolder;"></span>
+
+                <h4>Password : </h4>
+                <input id="Password1" onkeyup="CheckPasswordLength(this.value);" type="password"
+                       placeholder="Enter Password"
+                       name="Password1"/>
+                <span id="Password1Error"
+                      style="display: block; color: red; margin: 10px auto auto; font-weight: bolder;"></span>
+
+                <h4>Confirm Password : </h4>
+                <input onkeyup="CheckMatching(this.value)" id="Password2" type="password"
+                       placeholder="Re-enter Password" name="Password2"/>
+                <span id="Password2Error"
+                      style="display: block; color: red; margin: 10px auto auto; font-weight: bolder;"></span>
+                <br>
+
+                <button class="btn btn-light" type="submit" value="SUBMIT">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function CheckUsernameExistence(str) {
+            if (str === '') {
+                document.getElementById('UsernameError').innerHTML = '';
+            } else {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'CheckUsernameUniqueness' %}",
+                        data: {'Username': str, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.result === 'Exists') {
+                                document.getElementById('UsernameError').innerHTML = 'Username Taken';
+                            } else {
+                                document.getElementById('UsernameError').innerHTML = '';
+                            }
+                        },
+                        error: function (rs) {
+                            alert(rs.responseText);
+                        }
+                    });
+            }
+        }
+
+        function CheckEmailUniqueness(str) {
+            if (str === '') {
+                document.getElementById('EmailError').innerHTML = '';
+            } else {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'CheckEmailUniqueness' %}",
+                        data: {'Email': str, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.result === 'Exists') {
+                                document.getElementById('EmailError').innerHTML = 'Email Already In Use';
+                            } else if (response.result === 'Not Exists') {
+                                document.getElementById('EmailError').innerHTML = '';
+                            } else {
+                                document.getElementById('EmailError').innerHTML = 'Invalid Format';
+                            }
+                        },
+                        error: function (rs) {
+                            alert(rs.responseText);
+                        }
+                    });
+            }
+        }
+
+        function CheckPasswordLength(str) {
+            if (str === '') {
+                document.getElementById('Password1Error').innerText = ''
+            } else if (str.length < 6) {
+                document.getElementById('Password1Error').innerText = 'Too Short'
+            } else {
+                document.getElementById('Password1Error').innerText = ''
+            }
+        }
+
+        function CheckMatching(str) {
+            var a = document.getElementById('Password1').value
+            var b = str
+            if (b === '') {
+                document.getElementById('Password2Error').innerText = ''
+            } else if (a !== b) {
+                document.getElementById('Password2Error').innerText = 'Password Should Match'
+            } else {
+                document.getElementById('Password2Error').innerText = ''
+            }
+        }
+
+        function CheckForm() {
+            if (document.getElementById('UsernameError').innerText.length !== 0) {
+                document.getElementById('O').innerText = 'Oops'
+                document.getElementById('S').innerText = 'Fix all the errors'
+                document.getElementById('OOPS').style.display = 'inherit'
+                return false;
+            } else if (document.getElementById('EmailError').innerText.length !== 0) {
+                document.getElementById('O').innerText = 'Oops'
+                document.getElementById('S').innerText = 'Fix all the errors'
+                document.getElementById('OOPS').style.display = 'inherit'
+                return false;
+            } else if (document.getElementById('Password1Error').innerText.length !== 0) {
+                document.getElementById('O').innerText = 'Oops'
+                document.getElementById('S').innerText = 'Fix all the errors'
+                document.getElementById('OOPS').style.display = 'inherit'
+                return false;
+            } else if (document.getElementById('Password2Error').innerText.length !== 0) {
+                document.getElementById('O').innerText = 'Oops'
+                document.getElementById('S').innerText = 'Fix all the errors'
+                document.getElementById('OOPS').style.display = 'inherit'
+                return false;
+            } else if (document.getElementById('PhoneError').innerText.length !== 0) {
+                document.getElementById('O').innerText = 'Oops'
+                document.getElementById('S').innerText = 'Fix all the errors'
+                document.getElementById('OOPS').style.display = 'inherit'
+                return false;
+            } else {
+                var y = document.querySelectorAll('input')
+                for (var x = 0; x < y.length; x++) {
+                    console.log(y[x].value)
+                    if (y[x].value === '') {
+                        document.getElementById('O').innerText = 'All Fields Are Required'
+                        document.getElementById('S').innerText = ''
+                        document.getElementById('OOPS').style.display = 'inherit'
+                        return false;
+                    }
+                }
+            }
+        }
+
+        function CheckPhoneValidity(str) {
+            if (str === ''){
+                document.getElementById('PhoneError').innerText = ''
+            }
+            else if (str.startsWith('+')) {
+                document.getElementById('PhoneError').innerText = ''
+            } else {
+                document.getElementById('PhoneError').innerText = 'Enter Number with Country Code'
+            }
+        }
+
+    </script>
+{% endblock %}
