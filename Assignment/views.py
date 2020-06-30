@@ -48,8 +48,8 @@ def EmailVerification(request):
 def SendCodeEmail(request):
     print(request.POST)
     Code = random.randint(150000, 999999)
-    sender = "authorspointhelp@gmail.com"
-    password = "authorspoint123@"
+    sender = "********@gmail.com"
+    password = "************"
     port = 465
     recieve1 = request.POST['To_Email']
     cont = ssl.create_default_context()
