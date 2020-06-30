@@ -113,7 +113,6 @@
                 var current_minutes = mins - 1
                 seconds--;
                 var remain = 'Resend Code in ' + current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-                console.log(remain)
                 document.getElementById('SendButton').innerText = remain;
                 if (seconds > 0) {
                     timeoutHandle = setTimeout(tick, 1000);
