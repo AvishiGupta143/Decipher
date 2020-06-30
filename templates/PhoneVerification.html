@@ -69,10 +69,8 @@
 
         function CheckCode() {
             if (document.getElementById('Code').value === Got) {
-                console.log('Done Biro')
                 return true;
             } else {
-                console.log('Kch hagge ho...Check kro')
                 document.getElementById('OOPS').style.display = 'inherit'
                 return false;
             }
@@ -84,7 +82,6 @@
             countdown(2);
             document.getElementById('SendButton').disabled = 'true';
             setTimeout(function () {
-                console.log('Code Snet')
                 document.getElementById('SendButton').removeAttribute('disabled')
                 document.getElementById('SendButton').innerText = 'Send Code Again'
             }, fewSeconds * 1000);
@@ -116,7 +113,6 @@
                 var current_minutes = mins - 1
                 seconds--;
                 var remain = 'Resend Code in ' + current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-                console.log(remain)
                 document.getElementById('SendButton').innerText = remain;
                 if (seconds > 0) {
                     timeoutHandle = setTimeout(tick, 1000);
